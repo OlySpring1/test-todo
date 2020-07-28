@@ -1,6 +1,6 @@
 {
   "name": "test-todo",
-  "home": "http://OlySpring1.github.io/test-todo",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
