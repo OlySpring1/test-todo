@@ -1,2 +1,0 @@
-(this["webpackJsonptest-todo"]=this["webpackJsonptest-todo"]||[]).push([[0],{3:function(t,e,n){t.exports=n(9)},8:function(t,e,n){},9:function(t,e,n){"use strict";n.r(e);var o=n(0),r=n.n(o),s=n(2),a=n.n(s);n(8);var c=function(){return r.a.createElement("div",{className:"App"},"hello")};a.a.render(r.a.createElement(c,null),document.getElementById("root"))}},[[3,1,2]]]);
-//# sourceMappingURL=main.8d243448.chunk.js.map
