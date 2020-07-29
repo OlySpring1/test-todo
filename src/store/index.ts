@@ -1,6 +1,4 @@
-import {
-  createStore, combineReducers, applyMiddleware, AnyAction,
-} from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import todos from './todos';
 import query from './search';
@@ -23,7 +21,6 @@ export const getVisibleTodos = (state: RootState) => {
         .includes(state.query.toLowerCase())
     ));
 };
-
 
 const store = createStore(
   rootReducer,

@@ -1,0 +1,59 @@
+@import '../../style/mixins.scss';
+
+.footer {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.new-todo {
+  width: 100%;
+  border: 1px solid #c3c0c0;
+  border-radius: 16px;
+  background-color: #fff;
+
+  &__input {
+    width: 75%;
+    color: inherit;
+    border: none;
+    border-radius: 16px;
+    padding: 16px 0 16px 40px;
+    font-style: italic;
+    @include text;
+  }
+
+  &__btn {
+    width: 25%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);;
+    border-radius: 0 16px 16px 0;
+    @extend .new-todo__input;
+    font-style: normal;
+    border-left: 1px solid #c3c0c0;
+    border-radius: 0 16px 16px 0;
+    padding: 16px 0;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: #c5c4c4;
+      border-radius: 0 16px 16px 0;
+    }
+  }
+
+  @media screen and (max-width: 570px){
+    &__input {
+      width: 100%;
+    }
+    &__btn {
+      width: 100%;
+      border-radius: 0 0 16px 16px;
+    }
+  }
+}
+
+.error {
+  text-align: center;
+  font-size: 14px;
+  @include text;
+  color:  rgba(175, 47, 47, 1);
+}

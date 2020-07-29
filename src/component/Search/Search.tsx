@@ -1,13 +1,11 @@
-import React, { useState, useCallback, KeyboardEvent } from 'react';
+import React, { useCallback, KeyboardEvent } from 'react';
 import './Search.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import debounce from 'lodash.debounce';
 import { setQuery } from '../../store/search';
-import { getQuery } from '../../store';
 
 const Search = () => {
   const dispatch = useDispatch();
-  const query = useSelector(getQuery);
 
   const setVisibleQueryWithDebounce = useCallback(
     debounce((actualQuery: string) => dispatch(setQuery(actualQuery)), 500), [],
@@ -18,15 +16,16 @@ const Search = () => {
     setVisibleQueryWithDebounce(value);
   };
 
-return (
-  <header className="header">
-    <h1>todos</h1>
-    <input
-      className="new-todo"
-      placeholder="Enter task name for search..."
-      onKeyUp={(e) => handleOnKeyUp(e)}
-    />
-  </header>
-)
+  return (
+    <header className="header">
+      <h1 className="h1">todos</h1>
+      <input
+        type="text"
+        className="search"
+        placeholder="Enter task name for search..."
+        onKeyUp={(e) => handleOnKeyUp(e)}
+      />
+    </header>
+  )
 }
 export default Search;

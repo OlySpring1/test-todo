@@ -33,7 +33,11 @@ type removeTodo = Action<typeof REMOVE_TODO> & {
 
 type AllowedActions = addTodo | toggleTodo | removeTodo;
 
-const initialState: Todo[] = [];
+let initialState: Todo[] = [];
+
+if (localStorage.getItem('todos')) {
+  initialState = [...JSON.parse(localStorage.getItem('todos') || '')];
+}
 
 const todos = (todos = initialState, action: AllowedActions) => {
   switch (action.type) {

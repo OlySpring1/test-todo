@@ -1,48 +1,23 @@
-import React, { useState, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import './App.scss';
-import { useDispatch } from 'react-redux';
-import { addTodo } from './store/todos';
-import debounce from 'lodash.debounce';
+import { useSelector } from 'react-redux';
 import TodoList from './component/TodoList/TodoList';
 import Search from './component/Search/Search';
+import { getTodos } from './store';
+import NewTodo from './component/NewTodo/NewTodo';
 
 const App = () => {
-  const dispatch = useDispatch();
-  const [titleTask, setTitleTask] = useState('');
-  
-  const setTitleTaskWithDebounce = useCallback(
-    debounce((actualQuery: string) => dispatch(addTodo(actualQuery)), 500), []
-  );
+  const todos = useSelector(getTodos);
 
-  const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const { value } = e.target as HTMLInputElement;
-    setTitleTask(value);
-  };
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify([...todos]));
+  }, [todos]);
 
-  const handleOnClick = () => {
-    setTitleTaskWithDebounce(titleTask);
-    setTitleTask('');
-  }
   return (
-    <div className="todo">
+    <div >
       <Search />
       <TodoList />
-        <footer className="footer">
-          <input
-            className="new-todo"
-            placeholder="What needs to be done?"
-            value={titleTask}
-            onChange={handleOnChange}
-          />
-          <button 
-            type="button"
-            onClick={handleOnClick}
-          >
-          Add Task
-          </button>
-        </footer>
-      
-
+      <NewTodo />
     </div>
   );
 }

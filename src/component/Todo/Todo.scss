@@ -1,0 +1,35 @@
+@import "../../style/mixins.scss";
+
+.todo {
+  width: 100%;
+  min-height: 58px;
+  padding: 6px 10px 6px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #c3c0c0;
+  background-color: #fff;
+  @include text;
+
+  &__item {
+    width: 75%;
+    background-color: #fff;
+    text-align: start;
+    word-break: break-all;
+    color: #0050c9;
+    &-active {
+      color: #4d4d4d;
+    }
+  }
+
+  &__btn-delete {
+    background-color: #c3c0c0;
+    padding: 10px;
+    margin-left: 12px;
+    border-radius: 15px;
+    padding: 6px 10px;
+    text-decoration: none;
+    color: #fff;
+    @include hover(background-color,#a19f9f )
+  }
+}

@@ -19,7 +19,6 @@ const reducer = (query = '', action: AllowedActions) => {
   switch (action.type) {
     case QUERY:
       return action.query;
-
     default:
       return query;
   }
