@@ -20,7 +20,7 @@ const NewTodo = () => {
   };
 
   const handleOnClick = () => {
-    if (titleTask.length === 0) {
+    if (titleTask.trim().length === 0 ) {
       seTtitleError(true);
       return;
     }
