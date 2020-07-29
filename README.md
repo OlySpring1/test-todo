@@ -1,6 +1,6 @@
 # ToDo
------------------
-* ## [DEMO LINK](https://olyspring1.github.io/test-todo/)
+
+* # [DEMO LINK](https://olyspring1.github.io/test-todo/)
 
 ### `To run the project locally, follow these steps:`
 1. npm i

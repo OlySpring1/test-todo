@@ -43,6 +43,7 @@ const NewTodo = () => {
       type="button" 
       onClick={handleOnClick} 
       className="new-todo__btn" 
+      onBlur={() => seTtitleError(false)}
     >
       Add Task
       </button>

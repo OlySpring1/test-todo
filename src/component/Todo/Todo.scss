@@ -10,7 +10,7 @@
   border-bottom: 1px solid #c3c0c0;
   background-color: #fff;
   @include text;
-
+  
   &__item {
     width: 75%;
     background-color: #fff;
@@ -20,6 +20,7 @@
     &-active {
       color: #4d4d4d;
     }
+    cursor: pointer;
   }
 
   &__btn-delete {
