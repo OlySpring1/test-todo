@@ -1,30 +1,20 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import todos from './todos';
-import query from './search';
+import { rootReducer } from './reducers'
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './sagas';
+// create sagaMiddleware
+const sagaMiddleware = createSagaMiddleware();
 
-const rootReducer = combineReducers({
-  todos,
-  query,
-});
-
-export type RootState = ReturnType<typeof rootReducer>;
-
-export const getTodos = (state: RootState) => state.todos;
-export const getQuery = (state: RootState) => state.query;
-
-export const getVisibleTodos = (state: RootState) => {
-  return state.todos
-    .filter((todo: Todo) => (
-      (todo.text)
-        .toLowerCase()
-        .includes(state.query.toLowerCase())
-    ));
-};
-
+// mount it in the Store
 const store = createStore(
   rootReducer,
-  composeWithDevTools(),
+  compose(
+    applyMiddleware(sagaMiddleware),
+    composeWithDevTools()
+  ),
 );
+// then run saga
+sagaMiddleware.run(rootSaga)
 
 export default store;

@@ -1,25 +1,25 @@
-import React, { useCallback, KeyboardEvent } from 'react';
-import './Search.scss';
+import React, { KeyboardEvent } from 'react';
+import './Search.styled.ts';
 import { useDispatch } from 'react-redux';
-import debounce from 'lodash.debounce';
-import { setQuery } from '../../store/search';
+import { setChangedSearchInput } from '../../store/modulSearch';
+import { InputStyled, TitleStyled } from './Search.styled';
 
 const Search = () => {
   const dispatch = useDispatch();
 
-  const setVisibleQueryWithDebounce = useCallback(
-    debounce((actualQuery: string) => dispatch(setQuery(actualQuery)), 500), [],
-  );
+  // const setVisibleQueryWithDebounce = useCallback(
+  //   debounce((actualQuery: string) => dispatch(setQuery(actualQuery)), 500), [],
+  // );
 
   const handleOnKeyUp = (e: KeyboardEvent) => {
     const { value } = e.target as HTMLInputElement;
-    setVisibleQueryWithDebounce(value);
+    dispatch(setChangedSearchInput(value));
   };
 
   return (
-    <header className="header">
-      <h1 className="h1">todos</h1>
-      <input
+    <header >
+      <TitleStyled>todos</TitleStyled>
+      <InputStyled
         type="text"
         className="search"
         placeholder="Enter task name for search..."

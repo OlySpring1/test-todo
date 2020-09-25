@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './Todo.scss';
+import './Todo.styled.ts';
 import { useDispatch } from 'react-redux';
-import { removeTodo, toggleTodo } from '../../store/todos';
-import PopUp from '../PopUp/PopUp';
+import { removeTodo, toggleTodo } from '../../store/modulTodos';
 import cn from 'classnames';
+import { TodoStyled } from './Todo.styled';
 type PropsTodo = {
   todo: Todo
 }
@@ -11,18 +11,17 @@ type PropsTodo = {
 const Todo: React.FC<PropsTodo> = ({ todo }) => {
   const dispatch = useDispatch();
   const [isToggle, setIsToggle] = useState(false);
-  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
   const changeStatus = () => {
     dispatch(toggleTodo(todo.id));
     setIsToggle(!isToggle);
-
   }
 
   const deleteTodo = (id: string) => {
     dispatch(removeTodo(id))
   }
+
   return (
-    <li className="todo">
+    <TodoStyled color="#717070" property="background-color">
       <button
         type="button"
         className={cn("todo__item", {
@@ -30,26 +29,17 @@ const Todo: React.FC<PropsTodo> = ({ todo }) => {
         })}
         onClick={changeStatus}
       >
-        {todo.text}
+        {todo.title}
       </button>
       {isToggle && (
-        <a href="#popup1"
+        <button
           className="todo__btn-delete"
-          onClick={() => setOpenConfirmationModal(true)}
+          onClick={() => deleteTodo(todo.id)}
         >
           Delete
-        </a>
+        </button>
       )}
-
-      {openConfirmationModal && (
-        <PopUp
-          name={todo.text}
-          text='Do you really want delete'
-          closePopUp={() => setOpenConfirmationModal(false)}
-          confirmAction={() => deleteTodo(todo.id)}
-        />
-      )}
-    </li>
+    </TodoStyled>
   )
 }
 

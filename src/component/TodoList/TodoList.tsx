@@ -1,18 +1,28 @@
-import React from 'react';
-import './TodoList.scss';
-import { useSelector } from 'react-redux';
-import { getVisibleTodos } from '../../store';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Todo from '../Todo/Todo';
+import { getVisibleTodos } from '../../store/selectors';
+import { TodoListStyled } from './TodoList.styled';
+import { loadTodo } from '../../store/modulTodos';
 
 const TodoList = () => {
+  const dispatch = useDispatch();
+
   const visibleTodos = useSelector(getVisibleTodos);
+  useEffect(() => {
+    dispatch(loadTodo())
+  }, [dispatch])
+
+  // useEffect(() => {
+  //   localStorage.setItem('todos', JSON.stringify([...visibleTodos]));
+  // }, [visibleTodos]);
 
   return (
-    <ul className="todoapp">
-      {visibleTodos.map((todo: Todo) => (
+    <TodoListStyled>
+      {visibleTodos.map((todo) => (
         <Todo key={todo.id} todo={todo} />
       ))}
-    </ul>
+    </TodoListStyled>
   )
 }
 

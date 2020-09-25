@@ -1,38 +1,34 @@
-import React, { useState, useCallback } from 'react';
-import './NewTodo.scss';
+import React, { useState } from 'react';
+import './NewTodo.styled.ts';
 import { useDispatch } from 'react-redux';
-import debounce from 'lodash.debounce';
-import { addTodo } from '../../store/todos';
-
+import { addTodo } from '../../store/modulTodos';
+import {NewTodoStyled, ErrorMessage } from './NewTodo.styled'
 const NewTodo = () => {
   const dispatch = useDispatch();
   const [titleTask, setTitleTask] = useState('');
-  const [titleError, seTtitleError] = useState(false);
-
-  const setTitleTaskWithDebounce = useCallback(
-    debounce((actualQuery: string) => dispatch(addTodo(actualQuery)), 500), []
-  );
+  const [titleError, setTitleError] = useState(false);
 
   const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.target as HTMLInputElement;
+    
     setTitleTask(value);
-    seTtitleError(false);
+    setTitleError(false);
   };
-
-  const handleOnClick = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()        
+   
     if (titleTask.trim().length === 0 ) {
-      seTtitleError(true);
+      setTitleError(true);
       return;
     }
-
-    setTitleTaskWithDebounce(titleTask);
+    dispatch(addTodo(titleTask.trim()))
     setTitleTask('');
   }
 
   return (
-    <footer className="footer">
-    <div className="new-todo">
-    <input
+    <footer>
+      <NewTodoStyled onSubmit={handleSubmit}>
+      <input
       type="text"
       className="new-todo__input"
       placeholder="Enter task and press &quot;Add Text&quot; button"
@@ -40,16 +36,15 @@ const NewTodo = () => {
       onChange={handleOnChange}
     />
     <button 
-      type="button" 
-      onClick={handleOnClick} 
+      type="submit" 
       className="new-todo__btn" 
-      onBlur={() => seTtitleError(false)}
     >
       Add Task
       </button>
-    </div>
+      </NewTodoStyled>
+    
     {titleError && (
-      <p className="error">Please, enter a task</p>
+      <ErrorMessage className="error">Please, enter a task</ErrorMessage>
     )}
   </footer>
   )

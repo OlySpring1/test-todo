@@ -1,15 +1,16 @@
 import { Action } from 'redux';
 
-const QUERY = 'QUERY';
+export const QUERY = 'QUERY';
+export const INPUT_CHANGED = 'INPUT_CHANGED';
 
-export const setQuery = (query: string) => (
+export const setChangedSearchInput = (query: string) => (
   {
-    type: QUERY,
+    type: INPUT_CHANGED,
     query,
   }
 );
 
-type setQuery = Action<typeof QUERY> & {
+export type setQuery = Action<typeof QUERY> & {
   query: string;
 }
 

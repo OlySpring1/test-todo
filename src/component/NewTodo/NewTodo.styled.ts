@@ -1,27 +1,22 @@
-@import '../../style/mixins.scss';
+import styled from '@emotion/styled/macro';
 
-.footer {
+export const NewTodoStyled = styled('form')`
   width: 100%;
   margin-bottom: 40px;
-}
-
-.new-todo {
-  width: 100%;
   border: 1px solid #c3c0c0;
   border-radius: 16px;
   background-color: #fff;
-
-  &__input {
+  
+  & > input {
     width: 75%;
     color: inherit;
     border: none;
     border-radius: 16px;
     padding: 16px 0 16px 40px;
     font-style: italic;
-    @include text;
   }
-
-  &__btn {
+  
+  & > button {
     width: 25%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.1);;
@@ -38,22 +33,19 @@
       background-color: #c5c4c4;
       border-radius: 0 16px 16px 0;
     }
-  }
-
-  @media screen and (max-width: 570px){
-    &__input {
-      width: 100%;
+    @media screen and (max-width: 570px){
+      .new-todo__input {
+        width: 100%;
+      }
+      .new-todo__btn {
+        width: 100%;
+        border-radius: 0 0 16px 16px;
+      }
     }
-    &__btn {
-      width: 100%;
-      border-radius: 0 0 16px 16px;
-    }
-  }
-}
-
-.error {
+  
+  `
+export const ErrorMessage = styled.p` 
   text-align: center;
   font-size: 14px;
-  @include text;
-  color:  rgba(175, 47, 47, 1);
-}
+  color: rgba(175, 47, 47, 1);
+`

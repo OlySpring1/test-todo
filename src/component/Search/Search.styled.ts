@@ -1,7 +1,9 @@
-@import '../../style/mixins.scss';
-.h1 {
+// @import '../../style/mixins.scss';
+import styled from '@emotion/styled';
+
+export const TitleStyled = styled('h1')`
   position: absolute;
-  top: 0;
+  top: 40px;
   left: 0;
   width: 100%;
   font-size: 100px;
@@ -9,16 +11,13 @@
   text-align: center;
   color: rgba(175, 47, 47, 0.15);
   text-rendering: optimizeLegibility;
-}
-
-.search {
+`
+export const InputStyled = styled('input') `
   width: 100%;
-  box-sizing: border-box;
   border: 1px solid #c3c0c0;
   border-radius: 16px;
   outline: none;
   padding: 16px 16px 16px 40px;
   margin-top: 110px;
-  @include text;
   font-style: italic;
-}
+`
