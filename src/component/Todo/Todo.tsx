@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import './Todo.styled.ts';
+import './Todo.styled.tsx';
 import { useDispatch } from 'react-redux';
 import { removeTodo, toggleTodo } from '../../store/modulTodos';
-import cn from 'classnames';
-import { TodoStyled } from './Todo.styled';
+import { ButtonDelete, TodoItem, TodoStyled } from './Todo.styled';
+import {colors} from '../../styles/colors';
+
 type PropsTodo = {
   todo: Todo
 }
@@ -11,6 +12,7 @@ type PropsTodo = {
 const Todo: React.FC<PropsTodo> = ({ todo }) => {
   const dispatch = useDispatch();
   const [isToggle, setIsToggle] = useState(false);
+
   const changeStatus = () => {
     dispatch(toggleTodo(todo.id));
     setIsToggle(!isToggle);
@@ -21,23 +23,22 @@ const Todo: React.FC<PropsTodo> = ({ todo }) => {
   }
 
   return (
-    <TodoStyled color="#717070" property="background-color">
-      <button
-        type="button"
-        className={cn("todo__item", {
-          "todo__item-active": isToggle
-        })}
+    <TodoStyled >
+      <TodoItem 
+        isToggle={isToggle} 
         onClick={changeStatus}
       >
         {todo.title}
-      </button>
+      </TodoItem>
+
       {isToggle && (
-        <button
-          className="todo__btn-delete"
+        <ButtonDelete
+        valueHover={colors.GRAY_HOVER}
+        propertyHover="background-color"
           onClick={() => deleteTodo(todo.id)}
         >
           Delete
-        </button>
+        </ButtonDelete>
       )}
     </TodoStyled>
   )

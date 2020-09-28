@@ -13,10 +13,6 @@ const TodoList = () => {
     dispatch(loadTodo())
   }, [dispatch])
 
-  // useEffect(() => {
-  //   localStorage.setItem('todos', JSON.stringify([...visibleTodos]));
-  // }, [visibleTodos]);
-
   return (
     <TodoListStyled>
       {visibleTodos.map((todo) => (

@@ -1,5 +1,5 @@
-// @import '../../style/mixins.scss';
 import styled from '@emotion/styled';
+import {colors} from '../../styles/colors'
 
 export const TitleStyled = styled('h1')`
   position: absolute;
@@ -9,7 +9,7 @@ export const TitleStyled = styled('h1')`
   font-size: 100px;
   font-weight: 100;
   text-align: center;
-  color: rgba(175, 47, 47, 0.15);
+  color: ${colors.TITLE_COLOR};
   text-rendering: optimizeLegibility;
 `
 export const InputStyled = styled('input') `

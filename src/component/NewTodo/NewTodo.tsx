@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import './NewTodo.styled.ts';
+import './NewTodo.styled.js';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../../store/modulTodos';
-import {NewTodoStyled, ErrorMessage } from './NewTodo.styled'
+import { ErrorMessage, NewTodoStyled, ButtonAdd } from './NewTodo.styled';
+import {colors} from '../../styles/colors'
 const NewTodo = () => {
   const dispatch = useDispatch();
   const [titleTask, setTitleTask] = useState('');
@@ -35,12 +36,13 @@ const NewTodo = () => {
       value={titleTask}
       onChange={handleOnChange}
     />
-    <button 
-      type="submit" 
-      className="new-todo__btn" 
+    <ButtonAdd 
+      type="submit"
+      propertyHover="background-color" 
+      valueHover={colors.GRAY_HOVER}
     >
       Add Task
-      </button>
+      </ButtonAdd>
       </NewTodoStyled>
     
     {titleError && (

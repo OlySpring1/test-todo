@@ -50,10 +50,6 @@ type AllowedActions = requestedTodoSucceeded | addTodo | toggleTodo | removeTodo
 
 let initialState: Todo[] = [];
 
-// if (localStorage.getItem('todos')) {
-//   initialState = [...JSON.parse(localStorage.getItem('todos') || '')];
-// }
-
 const todos = (todos = initialState, action: AllowedActions) => {
   switch (action.type) {
     case REQUESTED_TODOS_SUCCEEDED:
