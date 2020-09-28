@@ -44,7 +44,9 @@ export const NewTodoStyled = styled('form')`
     }
   
   `
-export const ErrorMessage = styled.p` 
+export const ErrorMessage = styled.p`
+  position: relative;
+  top: 100px;
   text-align: center;
   font-size: 14px;
   color: rgba(175, 47, 47, 1);

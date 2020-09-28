@@ -1,16 +1,15 @@
 import React, { KeyboardEvent } from 'react';
 import './Search.styled.ts';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setChangedSearchInput } from '../../store/modulSearch';
 import { InputStyled, TitleStyled } from './Search.styled';
+import { ErrorMessage } from '../NewTodo/NewTodo.styled';
+import { getErrorMessage } from '../../store/selectors';
 
 const Search = () => {
   const dispatch = useDispatch();
-
-  // const setVisibleQueryWithDebounce = useCallback(
-  //   debounce((actualQuery: string) => dispatch(setQuery(actualQuery)), 500), [],
-  // );
-
+  const errorMessage = useSelector(getErrorMessage)
+  
   const handleOnKeyUp = (e: KeyboardEvent) => {
     const { value } = e.target as HTMLInputElement;
     dispatch(setChangedSearchInput(value));
@@ -19,6 +18,13 @@ const Search = () => {
   return (
     <header >
       <TitleStyled>todos</TitleStyled>
+      {true
+        && (
+          <ErrorMessage>
+          {errorMessage}
+          </ErrorMessage>
+        )}
+
       <InputStyled
         type="text"
         className="search"

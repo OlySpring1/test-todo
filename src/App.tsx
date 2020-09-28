@@ -6,12 +6,10 @@ import Search from './component/Search/Search';
 import NewTodo from './component/NewTodo/NewTodo';
 import { Global, css } from '@emotion/core'
 import { Spinner } from './component/Spinner/Spinner';
-import { getErrorMessage, getIsLoading } from './store/selectors';
-import { ErrorMessage } from './component/NewTodo/NewTodo.styled';
+import { getIsLoading } from './store/selectors';
 
 const App = () => {
   const loading = useSelector(getIsLoading)
-  const errorMessage = useSelector(getErrorMessage)
 
   return (
     <div >
@@ -47,11 +45,14 @@ const App = () => {
           list-style: none;
         }
         button {
-          border: 0;
+          border: none;
           background: none;
           text-transform: capitalize;
           vertical-align: baseline;
           font: inherit;
+        }
+        button: focus{
+          outline: none;
         }
         input {
           font: inherit;
@@ -60,12 +61,6 @@ const App = () => {
         `}
       />
       {loading && <Spinner />}
-      {errorMessage
-        && (
-          <ErrorMessage>
-            {errorMessage}
-          </ErrorMessage>
-        )}
       <Search />
       <TodoList />
       <NewTodo />

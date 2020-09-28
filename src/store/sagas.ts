@@ -4,6 +4,7 @@ import { SET_MESSAGE } from './modulErrorMessage';
 import { REQUESTED_TODOS, REQUESTED_TODOS_SUCCEEDED } from './modulTodos';
 import { INPUT_CHANGED, QUERY, setQuery } from './modulSearch';
 const API_URL = 'https://jsonplaceholder.typicode.com/todos';
+
 const fetchTodos = async () => {
   const response = await fetch(`${API_URL}`);
   const data = await response.json();
@@ -21,7 +22,8 @@ export function* handleLoadTodo() {
     yield put({ type: REQUESTED_TODOS_SUCCEEDED, todos })
 
   } catch (error) {
-    yield put({ type: SET_MESSAGE, error })
+    
+    yield put({ type: SET_MESSAGE, error: 'Oops! Something went wrong... :('})
   }
   finally {
     yield put({ type: LOADER_FINISH })
