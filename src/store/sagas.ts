@@ -3,15 +3,19 @@ import { LOADER_FINISH, LOADER_START } from './moduleLoader';
 import { SET_MESSAGE } from './modulErrorMessage';
 import { REQUESTED_TODOS, REQUESTED_TODOS_SUCCEEDED } from './modulTodos';
 import { INPUT_CHANGED, QUERY, setQuery } from './modulSearch';
-const API_URL = 'https://jsonplaceholder.typicode.com/todos';
+// const API_URL = 'https://jsonplaceholder.typicode.com/todos';
+import API from '../utils/API'
 
 const fetchTodos = async () => {
-  const response = await fetch(`${API_URL}`);
-  const data = await response.json();
-  const todos = data.filter((todo: FetchTodo) => {
-    return todo.userId === 1 && todo.completed === false
-  })
-  return todos;
+  try {
+    let response = await API.get('/');
+     const todos = response.data.filter((todo: FetchTodo) => {
+      return todo.userId === 1 && todo.completed === false
+    })
+    return todos;
+  } catch(error) {
+    return error
+  }
 }
 
 export function* handleLoadTodo() {

@@ -20,7 +20,7 @@ const Search = () => {
       <TitleStyled>todos</TitleStyled>
       {true
         && (
-          <ErrorMessage>
+          <ErrorMessage top="100px">
           {errorMessage}
           </ErrorMessage>
         )}

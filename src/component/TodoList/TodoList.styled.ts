@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 export const TodoListStyled = styled('ul')`
   width: 100%;
-  height: 366px;
+  height: 340px;
   overflow-y: auto;
   background: #fff;
   margin: 20px 0;

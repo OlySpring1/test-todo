@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './NewTodo.styled.js';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../../store/modulTodos';
 import { ErrorMessage, NewTodoStyled, ButtonAdd } from './NewTodo.styled';
@@ -32,7 +31,7 @@ const NewTodo = () => {
       <input
       type="text"
       className="new-todo__input"
-      placeholder="Enter task and press &quot;Add Text&quot; button"
+      placeholder="Enter task"
       value={titleTask}
       onChange={handleOnChange}
     />
@@ -46,7 +45,7 @@ const NewTodo = () => {
       </NewTodoStyled>
     
     {titleError && (
-      <ErrorMessage className="error">Please, enter a task</ErrorMessage>
+      <ErrorMessage top="-40px">Please, enter a task</ErrorMessage>
     )}
   </footer>
   )
